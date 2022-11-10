@@ -87,13 +87,12 @@ class AdminController extends Controller
         // }
         // $product->save();
 
-        // return redirect()->back()->with('message','Product updated Successfully');
         return "we are in update_product and id sent is $productId";
     }
 
 
 
-    public function searchByProductName($productName){
+    public function searchByProductName($productName){ //$productName
         // dd($request->pname);
         // $product = Product::findOrFail( $request->pname);
         // $searchname = $request->pname;
@@ -102,19 +101,19 @@ class AdminController extends Controller
         // // dd($product);
         // // dd($product->title, $product->description);
         // return view('admin.searchByProductName', ['product' => $product]);
-        return "we are in searchByProductName and we want to search with $productName";
+        return "we are in searchByProductName and we want to search with  $productName";//$productName
     }
 
-    // public function view_order(){
-    //     dd(Product::all());
-    //     $order= Product::all();
-    //     return view('admin.viewOrder',['order' => $order]);
-    // }
+    public function view_order(){
+        // $order= Product::all();
+        $orders= Product::all();
+        return $orders;
+        return "we are in view all orders";
+    }
 
-    // public function search_order(Request $request){
-    //     $searchname = $request->pname;
-    //     $order = Product::where('title','LIKE', "%$searchname%")->get();
-
-    //     return view('admin.searchOrder',['order' => $order]);
-    // }
+    public function search_order($ordername){
+        // $searchname = $request->pname;
+        // $order = Product::where('title','LIKE', "%$searchname%")->get();
+        return "we are in search_order and we want to search with  $ordername";//$productName
+    }
 }

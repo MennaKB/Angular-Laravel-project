@@ -118,6 +118,7 @@ class AdminController extends Controller
     }
 
     public function view_order(){
+        dd(Product::all());
         $order= Product::all();
         return view('admin.viewOrder',['order' => $order]);
     }

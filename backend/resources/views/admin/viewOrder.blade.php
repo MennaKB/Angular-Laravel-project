@@ -94,9 +94,9 @@
                                 {{-- <a href="{{route('product.edit', $product['id'])}}" class="btn btn-success">Edit</a> --}}
                                 <form style="display:inline;" method="POST" action="{{route('product.destroy', $order['id'])}}">
                                     @csrf
-                                        <button class="btn btn-danger" onclick="return confirm('Do you want to Delete this Category?')">Pending</button>
-                                        <button class="btn btn-info" onclick="return confirm('Do you want to Delete this Category?')">Delete</button>
-                                        <button class="btn btn-success" onclick="return confirm('Do you want to Delete this Category?')">Delete</button>
+                                        <button class="btn btn-secondary">Pending</button>
+                                        <button class="btn btn-success">Accepted</button>
+                                        <button class="btn btn-danger">Rejected</button>
                                 </form>
                             </td>
 

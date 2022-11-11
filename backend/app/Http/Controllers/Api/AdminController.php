@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
@@ -11,28 +13,40 @@ class AdminController extends Controller
 {
     public function view_category(){
         $data= Category::all();
-        return $data;
+        return new CategoryResource($data);
     }
 
     public function add_category(Request $request){
         $data = new category;
         $data->category_name = $request->category;
-        $data->save();
+        $result=$data->save();
         // return "we are in add_category ";
         // return 'done + $data';
+        if($result){
+            return ["result" => "Category Added"];
+        }else{
+            return
+            ["result"=> "can not add category"];
+        }
     }
 
     public function destroy_category($categoryId){
         $data = Category::findOrFail($categoryId);
-        $data -> delete();
+        $result=$data -> delete();
         // return "we are in destroy_category and id sent is $categoryId";
         // return 'done + $data';
+        if($result){
+            return ["result" => "Deleted Category"];
+        }else{
+            return
+            ["result"=> "can not delete category"];
+        }
     }
 
     public function view_product(){
         $data= Product::all();
         // return " we are in view all products";
-        return $data;
+        return new ProductResource($data);
     }
 
     public function add_product(Request $request){//Request $request
@@ -50,18 +64,28 @@ class AdminController extends Controller
         // echo Storage::putFile('product', $request->file('image'));
         $product->image = $imagename;
 
-        $product->save();
-        // return redirect()->back()->with('message','New Product added Successfully');
-
-        return $product;
-        return " we are in add new products";
+        $result = $product->save();
+        if($result){
+            return ["result" => "Added Product successfully"];
+        }else{
+            return
+            ["result"=> "can not add product"];
+        }
+        // return new ProductResource($product);
+        // return " we are in add new products";
 
     }
 
     public function destroy_product($productId){
         $product = Product::findOrFail($productId);
-        $product-> delete();
+        $result = $product-> delete();
         // return "we are in destroy_product and id sent is $productId";
+        if($result){
+            return ["result" => "Deleted product"];
+        }else{
+            return
+            ["result"=> "can not delete product"];
+        }
     }
 
 
@@ -97,7 +121,7 @@ class AdminController extends Controller
         // $searchname = $request->proudctname;
         $product = Product::where('title','LIKE', "%$searchname%")->get();
         //return "we are in searchByProductName and we want to search with  $productName";
-        return $product;
+        return new ProductResource($product);
 
     }
 
@@ -123,10 +147,10 @@ class AdminController extends Controller
         ]);
 
         if($result){
-            return ["result" => "Updated"];
+            return ["result" => "Updated order status"];
         }else{
             return
-            ["result"=> "Not Updated"];
+            ["result"=> "can not update order"];
         }
         // return $order;
     }

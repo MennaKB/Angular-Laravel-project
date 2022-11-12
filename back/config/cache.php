@@ -27,7 +27,11 @@ return [
     | same cache driver to group types of items stored in your caches.
     |
     | Supported drivers: "apc", "array", "database", "file",
+<<<<<<< HEAD
+    |         "memcached", "redis", "dynamodb", "octane", "null"
+=======
     |            "memcached", "redis", "dynamodb", "null"
+>>>>>>> master
     |
     */
 
@@ -88,6 +92,13 @@ return [
             'endpoint' => env('DYNAMODB_ENDPOINT'),
         ],
 
+<<<<<<< HEAD
+        'octane' => [
+            'driver' => 'octane',
+        ],
+
+=======
+>>>>>>> master
     ],
 
     /*
@@ -95,6 +106,15 @@ return [
     | Cache Key Prefix
     |--------------------------------------------------------------------------
     |
+<<<<<<< HEAD
+    | When utilizing the APC, database, memcached, Redis, or DynamoDB cache
+    | stores there might be other applications using the same cache. For
+    | that reason, you may prefix every cache key to avoid collisions.
+    |
+    */
+
+    'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache_'),
+=======
     | When utilizing a RAM based store such as APC or Memcached, there might
     | be other applications utilizing the same cache. So, we'll specify a
     | value to get prefixed to all our keys so we can avoid collisions.
@@ -102,5 +122,6 @@ return [
     */
 
     'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache'),
+>>>>>>> master
 
 ];

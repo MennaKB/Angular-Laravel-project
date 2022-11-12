@@ -11,7 +11,11 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
+<<<<<<< HEAD
+    public function test_that_true_is_true()
+=======
     public function testBasicTest()
+>>>>>>> master
     {
         $this->assertTrue(true);
     }

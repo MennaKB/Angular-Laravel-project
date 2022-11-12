@@ -1,2 +1,6 @@
+<<<<<<< HEAD
+*.sqlite*
+=======
 *.sqlite
 *.sqlite-journal
+>>>>>>> master

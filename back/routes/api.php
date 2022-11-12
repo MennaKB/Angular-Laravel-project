@@ -65,3 +65,6 @@ Route::put('/update_order',[AdminController::class, 'update_order']);
 
 
 
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
